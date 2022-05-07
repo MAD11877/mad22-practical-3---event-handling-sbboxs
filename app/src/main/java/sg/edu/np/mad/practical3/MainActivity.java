@@ -28,17 +28,20 @@ public class MainActivity extends AppCompatActivity {
         user.setFollowed(false);
         TextView idInfo = findViewById(R.id.idDisplay);
         idInfo.setText("MAD "+ id);
+
+        //Listen for follow button
         Button myButton = findViewById(R.id.followButton);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(TAG, "Button Pressed");
+                Log.v(TAG, "Follow Button Pressed");
                 String buttonText = (String) myButton.getText();
                 Log.v(TAG,buttonText);
 
                 Context context = getApplicationContext();
                 CharSequence text = "Toast message";
 
+                //Check if followed or not
                 if(!user.isFollowed()){
                     myButton.setText("UNFOLLOW");
                     user.setFollowed((true));
@@ -53,7 +56,16 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
 
             }
-
+        });
+        //Listen for message button
+        Button messageButton = findViewById(R.id.messageButton);
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(TAG, "Message Button Pressed");
+                Intent myIntent = new Intent(MainActivity.this,MessageGroup.class);
+                startActivity(myIntent);
+            }
         });
     }
 }
